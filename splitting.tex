@@ -1,0 +1,42 @@
+\documentclass[10pt,a4paper,fleqn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fleqn}
+\author{Christian Burke}
+\begin{document}
+
+Suppose $k|n $ for some $k,n \in \mathbb{Z}$, then
+$$\sum^{n}_{i=0} f(i) = \sum^{\frac{n}{k}}_{i=0} f(ki) + \sum^{\frac{n}{k}-1}_{i=0} f(ki - 1) + \sum^{\frac{n}{k}-1}_{i=0} f(ki - 2) + \cdots + \sum^{\frac{n}{k}-1}_{i=0} f(ki - (k-1))$$
+PROOF:\\
+\begin{flalign*}
+&\sum^{n}_{i=0} f(i) = &\\ 
+&f(0) + f(1) + f(2) + \cdots + f(n)  &\\ 
+&=f(0) + f(1) + f(2) + \cdots + f(k-1) &\\ 
+&+f(k) + f(k+1) + f(k+2) + \cdots + f((k+ (k-1))) &\\ 
+&\ddots &\\ 
+&+f(k(\frac{n}{k} - 1)) + f(k(\frac{n}{k} - 1) +1) + f(k(\frac{n}{k} - 1) + 2) + \cdots + f(k(\frac{n}{k} - 1) + (k-1)) &\\ 
+&+f(k(\frac{n}{k}))
+\end{flalign*}
+It's easy to see that
+$$k(\frac{n}{k} - 1) = n-k ,$$
+$$k(\frac{n}{k} - 1) + (k-1) = n - k + k - 1 = n -1 ,$$
+and of course
+$$k\frac{n}{k} = n$$
+Rearranging:
+\begin{flalign*}
+&\sum^{n}_{i=0} f(i) = &\\ 
+&+f(0) + f(k) + f(2k) + \cdots + f(k(\frac{n}{k} -1)) + f(k(\frac{n}{k}))&\\ 
+&+f(1) + f(k + 1) + f(2k + 1) + \cdots + f(k(\frac{n}{k} -1) + 1)  &\\ 
+&+f(2) + f(k + 2) + f(2k + 2) + \cdots + f(k(\frac{n}{k} -1) + 2)  &\\
+&\ddots &\\ 
+&+f(k-1) + f(k + (k-1)) + f(2k + (k-1)) + \cdots + f(k(\frac{n}{k} -1) + (k-1))  &\\
+\end{flalign*}
+Now we can see that we have arranged the terms in such an order that they are in rows, with each row corresponding to each equivalence class modulo k.\\
+There are $\frac{n}{k}$ terms in the first row, due to the extra $f(n)$ term, and there are $\frac{n}{k} - 1$ terms in each of the other rows.\\
+We may now simply collect the terms into sums to get\\
+$$\sum^{n}_{i=0} f(i) = \sum^{\frac{n}{k}}_{i=0} f(ki) + \sum^{\frac{n}{k}-1}_{i=0} f(ki + 1) + \sum^{\frac{n}{k}-1}_{i=0} f(ki + 2) + \cdots + \sum^{\frac{n}{k}-1}_{i=0} f(ki + (k-1))$$
+Additionally, we can see from the algebraic manipulations that the number of rows (not including the first row representing congruence to 0 mod $k$) is of course $k-1$. This allows us the more compact representation
+$$\sum^{n}_{i=0} f(i) = \sum^{\frac{n}{k}}_{i=0}f(ki) + \sum^{k-1}_{q=1} \bigg[ \sum^{\frac{n}{k}-1}_{i=0} f(ki + q) \bigg]$$
+\end{document}
